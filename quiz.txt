@@ -1,0 +1,13 @@
+For the quiz, I think code 1 is better. The reason is as belows.
+
+1.Separation of Concerns: 
+    In Code 1, the click event handler is attached to the parent <div>, and the target element's content is logged when it's clicked. 
+    This separates the event handling logic from the individual animal elements. I think it's a cleaner and more maintainable way to handle events.
+
+2.Performance: 
+    In Code 2, the event handler is attached to each individual animal element. If the animals array is long, this can lead to a performance issue, 
+    also it will creates multiple event listeners. 
+    In Code 1, there's only one event listener for the parent element, which is more efficient.
+
+3.Code Readability: 
+    Code 1 is more readable because the event handling logic is clearly defined in one place, making it easier to understand and debug.
