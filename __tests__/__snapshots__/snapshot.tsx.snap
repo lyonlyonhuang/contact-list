@@ -38,7 +38,7 @@ exports[`Contact renders Contact unchanged 1`] = `
         </div>
       </div>
       <div
-        class="text-xs lg:text-sm text-ellipsis overflow-hidden"
+        class="text-xs lg:text-sm"
       >
         this is description
       </div>
