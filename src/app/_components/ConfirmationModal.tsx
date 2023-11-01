@@ -19,7 +19,7 @@ const ConfirmationModal = ( {uiqID, text, open, buttonColor, handleConfirm, setC
   useEffect(() => {
     const timerId = window.setTimeout(() => {
       setConfirmModalOpen(false);
-    }, 55000);
+    }, 5000);
     if (open) {
         timerId
     }
