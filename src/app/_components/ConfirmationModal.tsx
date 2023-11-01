@@ -19,7 +19,7 @@ const ConfirmationModal = ( {uiqID, text, open, buttonColor, handleConfirm, setC
   useEffect(() => {
     const timerId = window.setTimeout(() => {
       setConfirmModalOpen(false);
-    }, 5000);
+    }, 55000);
     if (open) {
         timerId
     }
@@ -42,8 +42,8 @@ const ConfirmationModal = ( {uiqID, text, open, buttonColor, handleConfirm, setC
               </div>
             </div>
             <div className="">
-              <button data-testid='confirmation-cancel-button' className={`w-36 p-2 m-1 border-2 rounded-md ${buttonColor.cancelButton}`} onClick={() => handleConfirm(false)}>Cancel</button>
-              <button data-testid='confirmation-confirm-button' className={`w-36 p-2 m-1 border-2 rounded-md text-white  ${buttonColor.confirmButton}`} onClick={() => handleConfirm(true)}>Confirm</button>
+              <button data-testid='confirmation-cancel-button' className={`w-30 p-2 m-1 border-2 rounded-md md:w-36 ${buttonColor.cancelButton}`} onClick={() => handleConfirm(false)}>Cancel</button>
+              <button data-testid='confirmation-confirm-button' className={`w-30 p-2 m-1 border-2 rounded-md md:w-36 text-white  ${buttonColor.confirmButton}`} onClick={() => handleConfirm(true)}>Confirm</button>
             </div>
         </div>
         <div 
