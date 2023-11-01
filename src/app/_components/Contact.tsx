@@ -39,11 +39,11 @@ export default function Contact(params: ContactModel) {
             <div className='text-xs lg:text-sm text-ellipsis overflow-hidden'>{params.description}</div>
         </div>
         <div className='flex shrink-0 items-center'>
-            <Link href={`/contact/edit/${params.id}`} className='right-3'>
-                <Image className='w-6 h-6 m-2 lg:w-9 lg:h-9 lg:m-4' src={EditImg} alt='Edit' />
+            <Link data-testid='contact-edit-link' href={`/contact/edit/${params.id}`} className='right-3'>
+                <Image data-testid='contact-edit-button' className='w-6 h-6 m-2 lg:w-9 lg:h-9 lg:m-4' src={EditImg} alt='Edit' />
             </Link>
             <div onClick={() => popupConfirmModal()}>
-                <Image className='w-6 h-6 m-2 lg:w-9 lg:h-9 lg:m-4 cursor-pointer' src={DeleteImg} alt='Delete' />
+                <Image data-testid='contact-delete-button' className='w-6 h-6 m-2 lg:w-9 lg:h-9 lg:m-4 cursor-pointer' src={DeleteImg} alt='Delete' />
             </div>
             <ConfirmationModal 
               text={'Delete contact'} 

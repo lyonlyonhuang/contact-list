@@ -77,7 +77,7 @@ export default function Contacts() {
       <div>
         <Header />
       </div>
-      <div className="flex items-center">
+      <div data-testid='contacts-list-header' className="flex items-center">
         <Link href={`/contact/add/`} className='flex basis-1/5 md:basis-1/12 justify-center'>
             <Image className='w-6 h-6 m-2 lg:w-9 lg:h-9 lg:m-4 bg-yellow-400 hover:bg-yellow-300 rounded' src={AddImg} alt='add' />
         </Link>

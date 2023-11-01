@@ -84,7 +84,7 @@ export default function EditContact({params} :{params:{id:number}}) {
             <form onSubmit={(e) => popupConfirmModal(e)}>
             <div className='p-1 mx-2 my-1 flex'>
                 <div className='flex flex-col grow m-1 pr-1 lg:m-4'>
-                    <div className="grow text-center text-4xl font-bold my-4 lg:text-6xl"> Edit Contact</div>
+                    <div className="grow text-center text-4xl font-bold my-4 lg:text-6xl">Edit Contact</div>
                     <label htmlFor="" className='text-sm font-bold lg:text-xl'>First Name</label>
                     <input 
                         type='text' 

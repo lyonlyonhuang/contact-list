@@ -31,7 +31,7 @@ const ConfirmationModal = ( {uiqID, text, open, buttonColor, handleConfirm, setC
   return (
     open ?
     createPortal(
-      <div>
+      <div data-testid='confirmation-modal'>
         <div className='modal '>
           <button onClick={() => handleConfirm(false)} className='modal__close'>&times;</button>
           <div className="confirm-content">
@@ -42,8 +42,8 @@ const ConfirmationModal = ( {uiqID, text, open, buttonColor, handleConfirm, setC
               </div>
             </div>
             <div className="">
-              <button className={`w-36 p-2 m-1 border-2 rounded-md ${buttonColor.cancelButton}`} onClick={() => handleConfirm(false)}>Cancel</button>
-              <button className={`w-36 p-2 m-1 border-2 rounded-md text-white  ${buttonColor.confirmButton}`} onClick={() => handleConfirm(true)}>Confirm</button>
+              <button data-testid='confirmation-cancel-button' className={`w-36 p-2 m-1 border-2 rounded-md ${buttonColor.cancelButton}`} onClick={() => handleConfirm(false)}>Cancel</button>
+              <button data-testid='confirmation-confirm-button' className={`w-36 p-2 m-1 border-2 rounded-md text-white  ${buttonColor.confirmButton}`} onClick={() => handleConfirm(true)}>Confirm</button>
             </div>
         </div>
         <div 
