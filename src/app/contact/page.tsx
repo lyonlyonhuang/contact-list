@@ -1,7 +1,7 @@
 "use client";
 import React,{useEffect, useState} from "react";
 import useSWR from "swr";
-import { ContactModel, AddContactModel } from "../_types_interface";
+import { ContactModel } from "../_types_interface";
 import Header from '../_components/Header';
 import Contact from "../_components/Contact";
 import Image from "next/image";
@@ -36,22 +36,22 @@ export default function Contacts() {
       if(sortFrom === Directions.DESCENDING){
         dataArray = dataArray.reverse()
       }
-      console.log("Directions",sortFrom);
-      console.log("sortcontacts",dataArray);
       setContacts(dataArray);
       
     }
   },[data,isLoading]);
 
   useEffect(() => {
-    let dataArray = [...contacts]
-    dataArray = dataArray.sort((curr: SortItems, next: SortItems) => {
-      return curr.first_name.localeCompare(next.first_name)
-    })
-    if(sortFrom === Directions.DESCENDING){
-      dataArray = dataArray.reverse()
+    if(contacts.length > 0) {
+      let dataArray = [...contacts]
+      dataArray = dataArray.sort((curr: SortItems, next: SortItems) => {
+        return curr.first_name.localeCompare(next.first_name)
+      })
+      if(sortFrom === Directions.DESCENDING){
+        dataArray = dataArray.reverse()
+      }
+      setContacts(dataArray);
     }
-    setContacts(dataArray);
   }, [sortFrom]);
 
   if (error) return <div>Failed to load</div>;
@@ -66,7 +66,7 @@ export default function Contacts() {
       },
     });
     const content = await res.json();
-    if(content.statusCode>0)
+    if(content.statusCode === 200)
     {
       setContacts(contacts?.filter((contact:ContactModel)=>{  return contact.id !== id  }));
     }
@@ -79,7 +79,7 @@ export default function Contacts() {
       </div>
       <div className="flex items-center">
         <Link href={`/contact/add/`} className='flex basis-1/5 md:basis-1/12 justify-center'>
-            <Image className='w-6 h-6 m-2 lg:w-9 lg:h-9 lg:m-4 bg-yellow-400 rounded' src={AddImg} alt='add' />
+            <Image className='w-6 h-6 m-2 lg:w-9 lg:h-9 lg:m-4 bg-yellow-400 hover:bg-yellow-300 rounded' src={AddImg} alt='add' />
         </Link>
         <div className="grow text-center text-4xl font-bold my-4 lg:text-6xl">Contacts</div>
         <div className="flex basis-1/5 md:basis-1/12 justify-center">
@@ -89,12 +89,11 @@ export default function Contacts() {
               : <Image className='w-6 h-6 m-2 lg:w-9 lg:h-9 lg:m-4 cursor-pointer' src={SortZ2A} alt='Edit' onClick={() => setsortFrom(Directions.ASCENDING)} />
           }
         </div>
-        <>{console.log("contacts", contacts)}</>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 mx-1">
         {
            contacts && contacts.map((contact : ContactModel)=>
-              <Contact key={contact.id + contact.first_name} {...contact} deleteContact = {delete_Contact} />
+              <Contact key={contact.id+Math.random()} {...contact} deleteContact = {delete_Contact} />
            )
         }
       </div>

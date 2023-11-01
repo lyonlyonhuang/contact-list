@@ -1,14 +1,32 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { ContactModel } from '../_types_interface'
 import Link from 'next/link'
 import Image from "next/image";
 import DeleteImg from '../../../public/delete.svg'
 import EditImg from '../../../public/edit.svg'
+import ConfirmationModal from './ConfirmationModal'
 
+const DeleteColor = {
+  cancelButton: 'border-2 border-red-500 text-red-500 hover:bg-red-100',
+  confirmButton: 'border-2 border-red-500 bg-red-500 hover:bg-red-400'
+}
 
 export default function Contact(params: ContactModel) {
+  const [confirmModalOpen, setConfirmModalOpen] = useState<boolean>(false)
+ 
+  const popupConfirmModal = () => {
+    setConfirmModalOpen(true);
+  };
+
+  const handleConfirm = (confirm:boolean) => {
+      if(confirm) {
+          params.deleteContact(params.id)
+      }
+      setConfirmModalOpen(false)
+  }
+
   return (
-    <div className='p-1 mx-2 my-1 border-gray-400 border-2 rounded flex hover:bg-slate-100'>
+    <div className='p-1 mx-2 my-1 border-gray-400 border-2 rounded flex bg-slate-50 hover:bg-slate-100'>
 	      <div className='flex shrink-0 items-center m-1 lg:m-4'>
             <img className='rounded-full w-16 h-16 lg:w-32 lg:h-32' src="https://i.pravatar.cc/300" alt="mock avatar" />
         </div>
@@ -24,9 +42,17 @@ export default function Contact(params: ContactModel) {
             <Link href={`/contact/edit/${params.id}`} className='right-3'>
                 <Image className='w-6 h-6 m-2 lg:w-9 lg:h-9 lg:m-4' src={EditImg} alt='Edit' />
             </Link>
-            <div onClick={()=>params.deleteContact(params.id)}>
+            <div onClick={() => popupConfirmModal()}>
                 <Image className='w-6 h-6 m-2 lg:w-9 lg:h-9 lg:m-4 cursor-pointer' src={DeleteImg} alt='Delete' />
             </div>
+            <ConfirmationModal 
+              text={'Delete contact'} 
+              open={confirmModalOpen} 
+              buttonColor={DeleteColor} 
+              uiqID={`${Math.random()}`}
+              handleConfirm={handleConfirm}
+              setConfirmModalOpen={setConfirmModalOpen}
+              />
         </div>
     </div>
   )
